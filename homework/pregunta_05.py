@@ -15,3 +15,20 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    records = {}
+    
+    with open("files/input/data.csv", "r", encoding="utf-8") as file:
+        for line in file:
+            columns = line.strip().split()
+            letter = columns[0]
+            value = int(columns[1])
+        
+            if letter in records:
+                records[letter].append(value)
+            else:
+                records[letter] = [value]
+
+
+    result = [(key, max(values), min(values)) for key, values in sorted(records.items())]
+    
+    return result

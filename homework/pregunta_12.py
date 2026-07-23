@@ -15,3 +15,29 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    totals = {}
+
+    with open("files/input/data.csv", "r", encoding="utf-8") as file:
+        for line in file:
+            columns = line.strip().split()
+     
+            letter = columns[0]
+            
+
+            dict_string = columns[4]
+            pairs = dict_string.split(",")
+            
+
+            row_sum = 0
+            for pair in pairs:
+
+                value = int(pair.split(":")[1])
+                row_sum += value
+                
+
+            totals[letter] = totals.get(letter, 0) + row_sum
+
+
+    result = {key: totals[key] for key in sorted(totals.keys())}
+
+    return result 

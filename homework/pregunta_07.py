@@ -25,3 +25,19 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    associations = {}
+    
+    with open("files/input/data.csv", "r", encoding="utf-8") as file:
+        for line in file:
+            columns = line.strip().split()
+            letter = columns[0]
+            value = int(columns[1])
+            
+            # Agrupamos las letras en una lista usando el número como llave
+            if value in associations:
+                associations[value].append(letter)
+            else:
+                associations[value] = [letter]
+
+    # Ordenamos el diccionario por la llave (el número) de menor a mayor
+    return sorted(associations.items())
